@@ -1,68 +1,94 @@
 import React, { useState } from 'react'
+import Modal from "./Companenets/Modal"
 
 const App = () => {
-  const [data,setData]=useState([{
-    id:1,
+  const [data, setData]=useState([{
     name:"Habiba",
-    age:18
+    age:18,
+    status:false,
+    id:1
+  },{
+    name:"Zebo",
+    age:16,
+    status:false,
+    id:2
   }])
-  const [open,setOpen]=useState(false)
-  const [idx,setIdx]=useState(null)
 
-  const [editName,setEditName]=useState('')
-  const [editAge,setEditAge]=useState('')
+  const [openAdd, setOpenAdd]=useState(false)
+  const [openEdit, setOpenEdit]=useState(false)
+  const [elemEdit, setElemEdit]=useState(null)
+  const [search, setSearch]=useState("")
 
-  const handleDelete=(id)=>{
-    setData(data.filter((e)=>e.id!=id))
-  }
+  const filterData=data.filter((e)=>e.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
 
-  const handleSubmit=(e)=>{
-    e.preventDefault()
+  const hendleSubmitAdd=(event)=>{
+    event.preventDefault()
     const newUser={
       id:Date.now(),
-      name:e.target.name.value,
-      age:e.target.age.value,
+      name:event.target.name.value,
+      age:event.target.age.value,
+      status:false
     }
-    setData([...data,newUser]) 
+    setData((prev)=>[...prev,newUser])
+    setOpenAdd((prev)=>!prev)
   }
 
-   const handleEditSubmit=(e)=>{
-    e.preventDefault()
-    const newUser={
-      id:idx,
-      name:editName,
-      age:editAge,
-    }
-    
-    setData(data.map((e)=>e.id==idx?newUser:e))
-    
+  const hendleSubmitEdit=(event)=>{
+    event.preventDefault()
+
+    setData((prev)=>prev.map((e)=>e.id==elemEdit.id?elemEdit:e))
+    setOpenEdit((prev)=>!prev)
   }
+
+  const hendleDelete=(id)=>{
+    setData((prev)=>prev.filter((e)=>e.id!=id))
+  }
+
+  const hendleEdit=(e)=>{
+    setOpenEdit(true)
+    setElemEdit(e)
+  }
+
   return (
-
     <div>
-      <div>
-        <form action="" onSubmit={handleSubmit}>
-          <input type="text" name='name' />
-          <input type="text" name='age'/>
-          <button type='submit'>summit</button>
-        </form>
+      <button onClick={()=>setOpenAdd((prev)=>!prev)}>Add+</button>
+      <input type="text" placeholder='search by name' value={search} onChange={(e)=>setSearch(e.target.value)} />
+      <div style={{display:"grid", gridTemplateColumns:"1fr 1fr 1fr", gap:"15px", margin:"10px"}}>
+        {
+          filterData.map((e)=>{
+            return <div style={{border:"1px solid grey", padding:"10px",}}>
+              <h1>Name:{e.name}</h1>
+              <p>Age:{e.age}</p>
+              <p>Status:{e.status ? "Active" : "Inactive"}</p>
+              <select value={e.status ?"Active":"Inactive"} onChange={(event)=>{
+                setData((prev)=>prev.map((item)=>item.id===e.id?{...item, status:event.target.value==="Active"}:item))}}>
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+
+                <button onClick={()=>hendleEdit(e)}>edit</button>
+                <button onClick={()=>hendleDelete(e.id)}>delete</button>
+            </div>
+          })
+        }
       </div>
-      {
-        data.map((e)=>{
-          return <div key={e.id}>
-            <h1>Name:{e.name}</h1>
-            <p>Age:{e.age}</p>
-            <button onClick={()=>handleDelete(e.id)}>delete</button><br />
-            <button onClick={()=>{opendEdit(true),setEditName(e.name),setEditAge(e.age),setIdx(e.id)}}>edit</button>
-            {open? <form action="" onSubmit={handleEditSubmit}>
-          <input value={editName} onChange={(e)=>setEditName(e.target.value)} type="text" name='name' />
-          <input value={editAge} onChange={(e)=>setEditAge(e.target.value)}qq type="text" name='age'/>
-          <button type='submit'>summit</button>
-        </form> : null}
-            
-          </div>
-        })
-      }
+
+      <Modal open={openAdd} setOpen={setOpenAdd} title="Add">
+        <form onSubmit={hendleSubmitAdd} action="">
+          <input name='name' placeholder='name' type="text" />
+          <input name='age' placeholder='age' type="text" />
+          <button type='submit'>Save</button>
+        </form>
+      </Modal>
+
+      <Modal open={openEdit} setOpen={setOpenEdit} title="Edit">
+        <form onSubmit={hendleSubmitEdit} action="">
+          <input type="text" name="name" placeholder='name' value={elemEdit?.name} onChange={(e)=>setElemEdit((prev)=>({...prev,name:e.target.value}))} />
+          <input type="text" name="age" placeholder='age' value={elemEdit?.age} onChange={(e)=>setElemEdit((prev)=>({...prev,age:e.target.value}))}/>
+          <button type='submit'>Save</button>
+        </form>
+      </Modal>
+
     </div>
   )
 }
