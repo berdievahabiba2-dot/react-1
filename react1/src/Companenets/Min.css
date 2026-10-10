@@ -1,0 +1,320 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.min {
+    width: 96%;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 18px;
+    font-family: Arial, sans-serif;
+    color: #302b27;
+}
+
+.min-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.min-header h1 {
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.min-header p {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #4c967f;
+    font-size: 11px;
+}
+
+.min-header img {
+    width: 20px;
+}
+
+.label {
+    margin: 22px 0 12px;
+    font-size: 15px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.options button {
+    min-height: 55px;
+    padding: 10px 5px;
+    border: 1px solid #eadfd4;
+    border-radius: 14px;
+    background: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.options small {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+.options .active,
+.count .active,
+.days .active {
+    background: #e2cfb8;
+    border-color: #e2cfb8;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin: 18px 0;
+}
+
+.count p {
+    line-height: 1.5;
+}
+
+.count div {
+    display: flex;
+    gap: 5px;
+    padding: 4px;
+    border: 1px solid #eadfd4;
+    border-radius: 25px;
+}
+
+.count button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+}
+
+.nutrition {
+    color: #a77c4b;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0 25px;
+}
+
+.days button {
+    padding: 9px 17px;
+    border: 1px solid #eadfd4;
+    border-radius: 25px;
+    background: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.food {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.food-card {
+    min-width: 0;
+}
+
+.food-card p {
+    line-height: 1.5;
+}
+
+.food-card .food-time {
+    color: #a77c4b;
+    font-size: 11px;
+}
+
+.bottom {
+    display: grid;
+    grid-template-columns: 1.1fr 60px 2fr;
+    align-items: center;
+    gap: 20px;
+    margin: 0 -20px -20px;
+    padding: 20px;
+    background: #a1bd94;
+    color: white;
+    border-radius: 0 0 18px 18px;
+}
+
+.order {
+    text-align: center;
+}
+
+.order button {
+    width: 100%;
+    padding: 12px 8px;
+    border: none;
+    border-radius: 25px;
+    background: #278b78;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.delivery-img {
+    width: 55px;
+    max-width: 100%;
+}
+
+.delivery-text h3 {
+    font-size: 15px;
+}
+
+.delivery-text p {
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+
+
+@media (max-width: 600px) {
+    .min {
+        width: 100%;
+        margin: 0;
+        padding: 12px 10px;
+    }
+
+    .min-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .min-header h1 {
+        font-size: 16px;
+    }
+
+    .min-header p {
+        font-size: 8px;
+    }
+
+    .min-header img {
+        width: 13px;
+    }
+
+    .label {
+        font-size: 12px;
+        margin: 14px 0 8px;
+    }
+
+    .options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .options button {
+        min-height: 45px;
+        padding: 8px 4px;
+        font-size: 10px;
+    }
+
+    .options small {
+        font-size: 9px;
+    }
+
+    .options button:last-child {
+        grid-column: auto;
+    }
+    
+    .nn{
+        display: none;
+    }
+    .active{
+        display: none;
+    }
+
+    .count {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        margin: 12px 0;
+    }
+
+    .count p {
+        font-size: 9px;
+    }
+
+    .count button {
+        width: 25px;
+        height: 25px;
+    }
+
+    .nutrition {
+        font-size: 10px;
+        line-height: 1.5;
+    }
+
+    .days {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+        margin: 10px 0 18px;
+    }
+
+    .days button {
+        width: 100%;
+        padding: 8px 2px;
+        font-size: 9px;
+        white-space: normal;
+    }
+
+    .food {
+        display: none;
+        
+    }
+    .bottom {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 0 -10px -12px;
+        padding: 15px 10px;
+        text-align: center;
+        border-radius: 0 0 12px 12px;
+    }
+
+    .order button {
+        width: 100%;
+        max-width: 320px;
+        padding: 11px 5px;
+        font-size: 10px;
+    }
+
+    .order p {
+        font-size: 9px;
+    }
+
+    .delivery-img {
+        display: block;
+        width: 45px;
+        margin: 0 auto;
+    }
+
+    .delivery-text h3 {
+        font-size: 12px;
+    }
+
+    .delivery-text p {
+        font-size: 9px;
+        line-height: 1.6;
+    }
+}

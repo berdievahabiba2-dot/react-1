@@ -1,7 +1,18 @@
 import React from 'react'
+import Hider from './Companenets/Hider'
+import Menu from './Companenets/Menu'
+import Min from "./Companenets/Min"
+import Activ from "./Companenets/Activ"
 
-export const App = () => {
+const App = () => {
   return (
-    <div>App</div>
+    <div>
+        <Hider></Hider>
+        <Menu></Menu>
+        <Min></Min>
+        <Activ></Activ>
+    </div>
   )
 }
+
+export default App
