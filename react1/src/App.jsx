@@ -85,7 +85,7 @@ const App = () => {
         <form onSubmit={hendleSubmitEdit} action="">
           <input type="text" name="name" placeholder='name' value={elemEdit?.name} onChange={(e)=>setElemEdit((prev)=>({...prev,name:e.target.value}))} />
           <input type="text" name="age" placeholder='age' value={elemEdit?.age} onChange={(e)=>setElemEdit((prev)=>({...prev,age:e.target.value}))}/>
-          <button type='submit'>Save</button>
+          <button type='submit'>Edit</button>
         </form>
       </Modal>
 
